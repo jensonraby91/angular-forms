@@ -1,1 +1,31 @@
-<p>registration-form works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col col-6">
+            <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
+                <div class="field mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" formControlName="firstName" [class.invalid]="
+                    registrationForm.get('firstName')?.invalid &&
+                    (registrationForm.get('firstName')?.dirty ||
+                    registrationForm.get('firstName')?.touched ||isSubmitted)" />
+                    <span
+                        *ngIf="registrationForm.get('firstName')?.hasError('required') &&(registrationForm.get('firstName')?.dirty ||registrationForm.get('firstName')?.touched || isSubmitted)"
+                        class="error">First Name field is required.
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" formControlName="lastName" [class.invalid]="
+                    registrationForm.get('lastName')?.invalid &&
+                    (registrationForm.get('lastName')?.dirty ||
+                    registrationForm.get('lastName')?.touched ||isSubmitted)"/>
+                    <span
+                        *ngIf="registrationForm.get('lastName')?.hasError('required') &&(registrationForm.get('lastName')?.dirty ||registrationForm.get('lastName')?.touched || isSubmitted)"
+                        class="error">Last Name field is required.
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

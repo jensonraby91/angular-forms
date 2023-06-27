@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+ 
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationFormComponent implements OnInit {
 
-  constructor() { }
+  formData: string = '';
+  isSubmitted = false;
 
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {}
+ 
+  registrationForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+  })
+ 
+  ngOnInit(): void {}
+ 
+  submit() {
+    this.isSubmitted = true;
+    this.formData = JSON.stringify(this.registrationForm.value);
   }
 
 }
